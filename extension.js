@@ -81,7 +81,7 @@ function activate(context) {
 			{% block toast %}
 			{% endblock toast %}
 		</div>
-		
+
 		<footer class="bd-footer pt-3 pb-2 mb-0 bottom-0 bg-dark bg-gradient text-white" style="min-width:400px; margin-top:auto;">
 			<div class="container text-center">
 				<div class="row ">
@@ -129,7 +129,7 @@ function activate(context) {
 				</div>
 			</div>
 		</footer>
-	</body>   
+	</body>
 </html>`;
 		// Check if templates/ folder exists
 		const templatesFolder = './templates';
@@ -313,10 +313,10 @@ ${serializers}`;
 		let customModels = "";
 		classes.forEach(function (model, index_classe) {
 			let customModel =`
-			
+
 class Custom${model}(admin.ModelAdmin):
 	"""Allow to edit ${model} informations"""
-	list_display = ('title', 'description')
+	# list_display = ('', )
 	fieldsets = [`;
 			let fields_from_classe = "";
 			fields[index_classe].forEach(function (field, index_field){
@@ -326,8 +326,8 @@ class Custom${model}(admin.ModelAdmin):
 			});
 			let end_class =`
 	]
-		
-		
+
+
 admin.site.register(${model}, Custom${model})
 `;
 		customModels = customModels.concat(customModel, fields_from_classe, end_class);

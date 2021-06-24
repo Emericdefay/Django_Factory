@@ -1,9 +1,6 @@
 # Change Log
 
-All notable changes to the "django-factory" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
 
-- Initial release
+- v0.0.7 - Correct admin generator
+- v0.0.6 - Initial release

@@ -2,9 +2,14 @@
 	"name": "django-factory",
 	"displayName": "Django Factory",
 	"description": "Generating files (urls.py, serializer.py, app.html, forms.py, admin.py) based on views and models files from your apps.",
-	"version": "0.0.6",
-	"publisher": "Emericdefay",
+	"version": "0.0.7",
+	"publisher": "Emeric-Defay",
 	"icon": "ressources/icon.png",
+	"repository": {
+		"url": "https://github.com/Emericdefay/Django_Factory",
+		"directory": "main",
+		"type": "github"
+	},
 	"engines": {
 		"vscode": "^1.57.0"
 	},
@@ -24,27 +29,27 @@
 		"commands": [
 			{
 				"command": "django-factory.createMainTemplate",
-				"title": "Create Main Template"
+				"title": "Create main.html Template"
 			},
 			{
 				"command": "django-factory.createAppTemplate",
-				"title": "Create App Template"
+				"title": "Create app.html Template"
 			},
 			{
 				"command": "django-factory.createAppSerializers",
-				"title": "Create App Serializers"
+				"title": "Create App serializers.py"
 			},
 			{
 				"command": "django-factory.createAppAdmin",
-				"title": "Create App Admin"
+				"title": "Create App admin.py"
 			},
 			{
 				"command": "django-factory.createAppForms",
-				"title": "Create App Forms"
+				"title": "Create App forms.py"
 			},
 			{
 				"command": "django-factory.createAppUrls",
-				"title": "Create App Urls"
+				"title": "Create App urls.py"
 			}
 		],
 		"menus": {
