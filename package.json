@@ -1,8 +1,8 @@
 {
 	"name": "django-factory",
 	"displayName": "Django Factory",
-	"description": "Generating files (urls.py, serializer.py, app.html, forms.py, admin.py) based on views and models files from your apps.",
-	"version": "0.0.7",
+	"description": "Generating files (urls.py, serializer.py, app.html, forms.py, admin.py, ...) based on views and models files from your apps.",
+	"version": "0.0.8",
 	"publisher": "Emeric-Defay",
 	"icon": "ressources/icon.png",
 	"repository": {
@@ -14,15 +14,10 @@
 		"vscode": "^1.57.0"
 	},
 	"categories": [
-		"Other"
+		"Extension Packs"
 	],
 	"activationEvents": [
-		"onCommand:django-factory.createMainTemplate",
-		"onCommand:django-factory.createAppTemplate",
-		"onCommand:django-factory.createAppSerializers",
-		"onCommand:django-factory.createAppAdmin",
-		"onCommand:django-factory.createAppForms",
-		"onCommand:django-factory.createAppUrls"
+		"onLanguage:python"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -53,7 +48,13 @@
 			}
 		],
 		"menus": {
-            "explorer/context": [{
+			"explorer/context": [
+				{
+					"submenu": "django-factory.commands",
+					"group": "7_modification"
+				}
+			],
+            "django-factory.commands": [{
                 "when": "filesExplorerFocus",
                 "command": "django-factory.createMainTemplate",
                 "group": "7_modification"
@@ -82,9 +83,14 @@
 				"when": "explorerResourceIsFolder",
 				"command": "django-factory.createAppUrls",
 				"group": "7_modification"
+			}]
+        },
+		"submenus": [
+			{
+				"id": "django-factory.commands",
+				"label": "Django-Factory"
 			}
 		]
-        }
 	},
 	"scripts": {
 		"lint": "eslint .",

@@ -29,22 +29,26 @@ function activate(context) {
 		if (!vscode.workspace){
 			return vscode.window.showErrorMessage('Please open a project folder first.');
 		}
-		// Display an error message if it's not a django project
-		if (!vscode.workspace.findFiles('manage.py')){
-			return vscode.window.showErrorMessage('Please open a django project.');
-		}
+		
 		let folderPath = vscode.workspace.workspaceFolders[0].uri.path
 		.slice(1,)
 		.toString();
+		
+		// Display an error message if it's not a django project
+		if (!fs.existsSync(`${folderPath}/manage.py`)){
+			return vscode.window.showErrorMessage('Please open a django project.');
+		}
+
 		const htmlContent = `{% load static %}
 
 <!DOCTYPE html>
-<html lang="fr" class="overflow-auto">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>TITLE | {{ request.path|cut:"/" }}</title>
-		<script src="{% static 'main.js' %}"></script>
+		<title>TITLE</title>
+		<script src="{% static 'assets/index.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'assets/main.css' %}"/>
 		<link rel="icon" type="image/png" href="ICON URL"/>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
@@ -77,9 +81,6 @@ function activate(context) {
 		<div class="container-xxl  bd-layout">
 			{% block content %}
 			{% endblock %}
-
-			{% block toast %}
-			{% endblock toast %}
 		</div>
 
 		<footer class="bd-footer pt-3 pb-2 mb-0 bottom-0 bg-dark bg-gradient text-white" style="min-width:400px; margin-top:auto;">
@@ -123,7 +124,7 @@ function activate(context) {
 				<div class="row">
 					<div class="col-12">
 						<p class="text-center " style="font-size:2vw;">
-							© Copyright 2021 NAME
+							Some cool text
 						</p>
 					</div>
 				</div>
@@ -155,8 +156,12 @@ function activate(context) {
 		if (!vscode.workspace){
 			return vscode.window.showErrorMessage('Please open a project folder first.');
 		}
+		let workplacePath = vscode.workspace.workspaceFolders[0].uri.path
+		.slice(1,)
+		.toString();
+
 		// Display an error message if it's not a django project
-		if (!vscode.workspace.findFiles('manage.py')){
+		if (!fs.existsSync(`${workplacePath}/manage.py`)){
 			return vscode.window.showErrorMessage('Please open a django project.');
 		}
 		let folderPath = a.path.slice(1,);
@@ -194,8 +199,13 @@ function activate(context) {
 		if (!vscode.workspace){
 			return vscode.window.showErrorMessage('Please open a project folder first.');
 		}
+
+		let workplacePath = vscode.workspace.workspaceFolders[0].uri.path
+		.slice(1,)
+		.toString();
+
 		// Display an error message if it's not a django project
-		if (!vscode.workspace.findFiles('manage.py')){
+		if (!fs.existsSync(`${workplacePath}/manage.py`)){
 			return vscode.window.showErrorMessage('Please open a django project.');
 		}
 		// Display an error message if models.py doesn't exist in app
@@ -261,8 +271,12 @@ ${serializers}`;
 		if (!vscode.workspace){
 			return vscode.window.showErrorMessage('Please open a project folder first.');
 		}
+		let workplacePath = vscode.workspace.workspaceFolders[0].uri.path
+		.slice(1,)
+		.toString();
+
 		// Display an error message if it's not a django project
-		if (!vscode.workspace.findFiles('manage.py')){
+		if (!fs.existsSync(`${workplacePath}/manage.py`)){
 			return vscode.window.showErrorMessage('Please open a django project.');
 		}
 		// Display an error message if models.py doesn't exist in app
@@ -356,8 +370,12 @@ ${customModels}`;
 		if (!vscode.workspace){
 			return vscode.window.showErrorMessage('Please open a project folder first.');
 		}
+		let workplacePath = vscode.workspace.workspaceFolders[0].uri.path
+		.slice(1,)
+		.toString();
+
 		// Display an error message if it's not a django project
-		if (!vscode.workspace.findFiles('manage.py')){
+		if (!fs.existsSync(`${workplacePath}/manage.py`)){
 			return vscode.window.showErrorMessage('Please open a django project.');
 		}
 		// Display an error message if models.py doesn't exist in app
@@ -446,8 +464,12 @@ ${customModels}`;
 			if (!vscode.workspace){
 				return vscode.window.showErrorMessage('Please open a project folder first.');
 			}
+			let workplacePath = vscode.workspace.workspaceFolders[0].uri.path
+			.slice(1,)
+			.toString();
+	
 			// Display an error message if it's not a django project
-			if (!vscode.workspace.findFiles('manage.py')){
+			if (!fs.existsSync(`${workplacePath}/manage.py`)){
 				return vscode.window.showErrorMessage('Please open a django project.');
 			}
 			// Display an error message if views.py doesn't exist in app

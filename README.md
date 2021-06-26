@@ -1,6 +1,7 @@
 <p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://github.com/Emericdefay/Django_Factory/raw/main/icon.png" alt="Project logo"></a>
+  <a href="https://github.com/Emericdefay/Django_Factory">
+    <img width=200px height=200px src="https://github.com/Emericdefay/Django_Factory/raw/main/icon.png" alt="Project logo">
+  </a>
 </p>
 
 <h3 align="center">Django Factory</h3>
@@ -29,7 +30,7 @@
 
 ## 🧐 Features <a name = "Features"></a>
 
-- Generate urls.py on your apps, taking function definitions from views.py
+- Generate urls.py on your apps, taking functions' definitions from views.py
 - Generate serializers.py on your app, taking models' classes from models.py
 - Generate admin.py on your app, taking models' classes from models.py
 - Generate forms.py on your app, taking models' classes from models.py
@@ -43,8 +44,8 @@ Click on the folder of your application to generate those files.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [NodeJs](https://nodejs.org/en/) - Extension developpement
+- [NodeJs](https://nodejs.org/en/) - Extension development
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@emericdefay](https://github.com/emericdefay) - Developpement
+- [@emericdefay](https://github.com/emericdefay) - Development
