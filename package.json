@@ -2,7 +2,7 @@
 	"name": "django-factory",
 	"displayName": "Django Factory",
 	"description": "Generating files (urls.py, serializer.py, app.html, forms.py, admin.py, ...) based on views and models files from your apps.",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"publisher": "Emeric-Defay",
 	"icon": "ressources/icon.png",
 	"repository": {
@@ -17,7 +17,8 @@
 		"Extension Packs"
 	],
 	"activationEvents": [
-		"onLanguage:python"
+		"onLanguage:python",
+		"onLanguage:django-html"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -50,45 +51,69 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"submenu": "django-factory.commands",
+					"when": "explorerViewletVisible",
+					"submenu": "django-factory",
 					"group": "7_modification"
 				}
 			],
-            "django-factory.commands": [{
-                "when": "filesExplorerFocus",
-                "command": "django-factory.createMainTemplate",
-                "group": "7_modification"
-            },
+			"django-factory": [
+				{
+					"when": "explorerViewletVisible",
+					"submenu": "django-factory-templates.commands",
+					"group": "7_modification"
+				},
+				{
+					"when": "explorerViewletVisible",
+					"submenu": "django-factory-files.commands",
+					"group": "7_modification"
+				}
+			],
+            "django-factory-templates.commands": [
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "django-factory.createMainTemplate",
+					"group": "7_modification"
+				},
+				{
+					"when": "explorerResourceIsFolder && ressouceScheme != ^.$ && ressourceScheme != ^templates$ && ressouceScheme != ^migrations$",
+					"command": "django-factory.createAppTemplate",
+					"group": "7_modification"
+				}
+			],
+			"django-factory-files.commands": [
 			{
-				"when": "explorerResourceIsFolder",
-				"command": "django-factory.createAppTemplate",
-				"group": "7_modification"
-			},
-			{
-				"when": "explorerResourceIsFolder",
+				"when": "explorerResourceIsFolder && ressouceScheme != ^.$ && ressourceScheme != ^templates$ && ressouceScheme != ^migrations$",
 				"command": "django-factory.createAppSerializers",
 				"group": "7_modification"
 			},
 			{
-				"when": "explorerResourceIsFolder",
+				"when": "explorerResourceIsFolder && ressouceScheme != ^.$ && ressourceScheme != ^templates$ && ressouceScheme != ^migrations$",
 				"command": "django-factory.createAppAdmin",
 				"group": "7_modification"
 			},
 			{
-				"when": "explorerResourceIsFolder",
+				"when": "explorerResourceIsFolder && ressouceScheme != ^.$ && ressourceScheme != ^templates$ && ressouceScheme != ^migrations$",
 				"command": "django-factory.createAppForms",
 				"group": "7_modification"
 			},
 			{
-				"when": "explorerResourceIsFolder",
+				"when": "explorerResourceIsFolder && ressouceScheme != ^.$ && ressourceScheme != ^templates$ && ressouceScheme != ^migrations$",
 				"command": "django-factory.createAppUrls",
 				"group": "7_modification"
 			}]
         },
 		"submenus": [
 			{
-				"id": "django-factory.commands",
-				"label": "Django-Factory"
+				"id": "django-factory",
+				"label": "Django Factory"
+			},
+			{
+				"id": "django-factory-templates.commands",
+				"label": "Templates"
+			},
+			{
+				"id": "django-factory-files.commands",
+				"label": "Files .py"
 			}
 		]
 	},

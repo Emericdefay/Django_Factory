@@ -137,15 +137,30 @@ function activate(context) {
 		if(!fs.existsSync(templatesFolder)){
 			fs.mkdirSync(folderPath+templatesFolder.slice(1,), { recursive: true });
 		}
-		// Writing main.html on templates folder
-		fs.writeFile(path.join(folderPath, 'templates/main.html'), htmlContent, (err) => {
-			if (err) {
-				return vscode.window.showErrorMessage(
-					'Failed to create the main template.'
-				);
-			}
-			vscode.window.showInformationMessage('Created main template.');
-		});
+
+		// check if file already exist and ask to user
+		if(fs.existsSync(path.join(folderPath, 'templates/main.html'))){
+			vscode.window.showInformationMessage(
+				`There is already a ./templates/main.html - Erase it?`,
+				...["Yes", "No"]
+			)
+			.then((answer) => {
+				if (answer == "No"){
+				vscode.window.showErrorMessage('Abortion.');
+				};
+				if (answer == "Yes"){
+					// Writing main.html on templates folder
+					fs.writeFile(path.join(folderPath, 'templates/main.html'), htmlContent, (err) => {
+						if (err) {
+							return vscode.window.showErrorMessage(
+								'Failed to create the main template.'
+							);
+						}
+						vscode.window.showInformationMessage('Created main template.');					
+					});
+				};
+			});
+		};
 	});
 
 	/*
@@ -180,15 +195,29 @@ function activate(context) {
 		if(!fs.existsSync(templatesAppFolder)){
 			fs.mkdirSync(templatesAppFolder, { recursive: true });
 		}
-		// Writing app.html on templates folder
-		fs.writeFile(path.join(templatesAppFolder, appName+'.html'), htmlContent, (err) => {
-			if (err) {
-				return vscode.window.showErrorMessage(
-					'Failed to create the app template.'
-				);
-			}
-			vscode.window.showInformationMessage('Created app template.');
-		});
+		// check if file already exist and ask to user
+		if(fs.existsSync(path.join(templatesAppFolder, appName+'html'))){
+			vscode.window.showInformationMessage(
+				`There is already a ${appName}.html - Erase it?`,
+				...["Yes", "No"]
+			)
+			.then((answer) => {
+				if (answer == "No"){
+				vscode.window.showErrorMessage('Abortion.');
+				};
+				if (answer == "Yes"){
+					// Writing app.html on templates folder
+					fs.writeFile(path.join(templatesAppFolder, appName+'.html'), htmlContent, (err) => {
+						if (err) {
+							return vscode.window.showErrorMessage(
+								'Failed to create the app template.'
+							);
+						}
+						vscode.window.showInformationMessage(`Created ${appName} template.`);
+					});
+				};
+			});
+		};
 	});
 
 	/*
@@ -253,16 +282,31 @@ from rest_framework import serializers
 # Local Libs:
 from .models import ${classes.join(', ')}
 ${serializers}`;
-		// Writing serailizers.py on templates folder
-		fs.writeFile(path.join(appPath, 'serializers.py'), pySerializers, (err) => {
-			if (err) {
-				return vscode.window.showErrorMessage(
-					'Failed to create the serailizers template.'
-				);
-			}
-			vscode.window.showInformationMessage('Created serializers template.');
-		});
+		// check if file already exist and ask to user
+		if(fs.existsSync(path.join(appPath, 'serializers.py'))){
+			vscode.window.showInformationMessage(
+				`There is already a serializers.py - Erase it?`,
+				...["Yes", "No"]
+			)
+			.then((answer) => {
+				if (answer == "No"){
+				vscode.window.showErrorMessage('Abortion.');
+				};
+				if (answer == "Yes"){
+					// Writing serializers.py on app folder
+					fs.writeFile(path.join(appPath, 'serializers.py'), pySerializers, (err) => {
+						if (err) {
+							return vscode.window.showErrorMessage(
+								'Failed to create the serializers file.'
+							);
+						}
+						vscode.window.showInformationMessage('Created serializers file.');					
+					});
+				};
+			});
+		};
 	});
+
 	/*
 	Generate admin.py in an app, taking models and fields from models.py
 	*/
@@ -352,16 +396,32 @@ from django.contrib import admin
 # Local Libs:
 from .models import ${classes.join(', ')}
 ${customModels}`;
-	// Writing main.html on templates folder
-	fs.writeFile(path.join(appPath, 'admin.py'), pyAdmin, (err) => {
-		if (err) {
-			return vscode.window.showErrorMessage(
-				'Failed to create the Admin template.'
-				);
-			}
-			vscode.window.showInformationMessage('Created Admin template.');
+
+	// check if file already exist and ask to user
+	if(fs.existsSync(path.join(appPath, 'admin.py'))){
+		vscode.window.showInformationMessage(
+			`There is already a admin.py - Erase it?`,
+			...["Yes", "No"]
+		)
+		.then((answer) => {
+			if (answer == "No"){
+			vscode.window.showErrorMessage('Abortion.');
+			};
+			if (answer == "Yes"){
+				// Writing admin.py on app folder
+				fs.writeFile(path.join(appPath, 'admin.py'), pyAdmin, (err) => {
+					if (err) {
+						return vscode.window.showErrorMessage(
+							'Failed to create the Admin file.'
+							);
+					}
+					vscode.window.showInformationMessage('Created Admin file.');
+				});
+			};
 		});
-	});
+	};
+});
+
 	/*
 	Generate forms for django app, taking models from models.py
 	*/
@@ -446,16 +506,31 @@ class ${model}Form(forms.Form):
 		let pyForm = `# Django Libs:
 from django import forms
 ${customModels}`;
-		// Writing main.html on templates folder
-		fs.writeFile(path.join(appPath, 'forms.py'), pyForm, (err) => {
-			if (err) {
-				return vscode.window.showErrorMessage(
-					'Failed to create the Form template.'
-					);
-				}
-				vscode.window.showInformationMessage('Created Form template.');
+		// check if file already exist and ask to user
+		if(fs.existsSync(path.join(appPath, 'forms.py'))){
+			vscode.window.showInformationMessage(
+				`There is already a forms.py - Erase it?`,
+				...["Yes", "No"]
+			)
+			.then((answer) => {
+				if (answer == "No"){
+				vscode.window.showErrorMessage('Abortion.');
+				};
+				if (answer == "Yes"){
+					// Writing forms.py on app folder
+					fs.writeFile(path.join(appPath, 'forms.py'), pyForm, (err) => {
+						if (err) {
+							return vscode.window.showErrorMessage(
+								'Failed to create the Form file.'
+								);
+							}
+							vscode.window.showInformationMessage('Created Form file.');
+					});
+				};
 			});
-		});
+		};
+	});
+
 		/*
 		Generate urls.py for an django app, taking function from views.py
 		*/
@@ -514,16 +589,30 @@ urlpatterns = [
 ${urls.join('\n')}
 ]
 `;
-			// Writing serailizers.py on templates folder
-			fs.writeFile(path.join(appPath, 'urls.py'), pyUrls, (err) => {
-				if (err) {
-					return vscode.window.showErrorMessage(
-						'Failed to create the Urls template.'
-					);
-				}
-				vscode.window.showInformationMessage('Created Urls template.');
-			});
+			if(fs.existsSync(path.join(appPath, 'urls.py'))){
+				vscode.window.showInformationMessage(
+					`There is already a urls.py - Erase it?`,
+					...["Yes", "No"]
+				)
+				.then((answer) => {
+					if (answer == "No"){
+					vscode.window.showErrorMessage('Abortion.');
+					};
+					if (answer == "Yes"){
+						// Writing serailizers.py on templates folder
+						fs.writeFile(path.join(appPath, 'urls.py'), pyUrls, (err) => {
+							if (err){
+								return vscode.window.showErrorMessage(
+									'Failed to create the Urls file.'
+									);
+								}
+							vscode.window.showInformationMessage('Created Urls file.');
+						});
+					};
+				});
+			};
 		});
+
 		// Sub every functionnality to the context
 		context.subscriptions.push(mainTemplate);
 		context.subscriptions.push(appTemplate);
